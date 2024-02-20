@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  geistsans: --font-geist-sans;
+  geistmono: --font-geist-mono;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background-image: linear-gradient(
+    to left bottom,
+    #19191d,
+    #191a23,
+    #181a29,
+    #161b2f,
+    #131c35,
+    #0e1f38,
+    #07223b,
+    #00253d,
+    #00293a,
+    #052d36,
+    #133032,
+    #1f3230
+  );
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
