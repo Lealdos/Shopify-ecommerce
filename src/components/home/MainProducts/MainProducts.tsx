@@ -8,6 +8,9 @@ import { getProducts } from 'app/services/shopify';
 
 export async function MainProducts() {
     const products = await getProducts()
+    // const prueba = ()=> {
+    //     return fetch ('localhost:3001/api/')
+    // }
     
     return (
         <section className='w-full h-full m-2'>
