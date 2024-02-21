@@ -25,7 +25,6 @@ export default function RootLayout({
                 className={`${GeistSans.className} flex flex-col text-center w-full h-full`}
             >
                 <Header />
-                <Hero />
                 {children}
                 <Footer />
             </body>
