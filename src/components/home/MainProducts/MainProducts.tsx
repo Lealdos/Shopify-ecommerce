@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { Product } from 'app/models/interface/products';
-import { Loader } from '@/components/shared/Loader';
 const getProducts = async () => {
     try {
         const response = await fetch(
@@ -29,7 +28,7 @@ export async function MainProducts() {
             </h3>
 
             <div className='flex flex-col gap-4 mx-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:grid-rows-3 grid-rows-[200px_minmax(900px,_1fr)_100px]'>
-                {products?.map((product: Product) => {
+                {products.map((product: Product) => {
                     const imageSrc = product.images[0].src;
                     return (
                         <article
