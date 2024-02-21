@@ -1,15 +1,17 @@
+import { MainProducts } from '@/components/home/MainProducts';
+
 interface CategoryProps {
-  params: {
-    categories: string[],
-  }
-  searchParams?: string
+    params: {
+        categories: string[];
+    };
+    searchParams?: string;
 }
 
-export default function Category(props: CategoryProps){
-  console.log(props)
-  const { categories } = props.params
-  console.log(categories)
-  return(
-    <h1>Categoria dinámica: {categories}</h1>
-  )
+export default function Category(props: Readonly<CategoryProps>) {
+    return (
+        <div className='flex flex-col items-center w-full h-full '>
+            <h1>Categoria dinámica: </h1>
+            <MainProducts />
+        </div>
+    );
 }
