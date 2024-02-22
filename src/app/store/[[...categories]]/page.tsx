@@ -1,5 +1,6 @@
+import { ProductsWrapper } from '@/components/Store/ProductsWrapper';
 import { MainProducts } from '@/components/home/MainProducts';
-
+import { getProducts } from '@/services/shopify';
 interface CategoryProps {
     params: {
         categories: string[];
@@ -7,11 +8,13 @@ interface CategoryProps {
     searchParams?: string;
 }
 
-export default function Category(props: Readonly<CategoryProps>) {
+export default async function Category(props: Readonly<CategoryProps>) {
+    const { categories } = props.params;
+    const products = await getProducts();
+
     return (
         <div className='flex flex-col items-center w-full h-full '>
-            <h1>Categoria dinámica: </h1>
-            <MainProducts />
+            <ProductsWrapper products={products} />
         </div>
     );
 }

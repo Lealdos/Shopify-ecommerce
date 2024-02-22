@@ -3,15 +3,11 @@ import { Product } from 'app/models/interface/products';
 
 import { getProducts } from 'app/services/shopify';
 
-
-
-
 export async function MainProducts() {
-    const products = await getProducts()
-    // const prueba = ()=> {
-    //     return fetch ('localhost:3001/api/')
-    // }
-    
+    const products = await getProducts();
+    const prueba = await fetch('http://localhost:3000/api');
+    const productos = await prueba.json();
+
     return (
         <section className='w-full h-full m-2'>
             <h3 className='text-3xl text-sky-500 text-center italic my-10'>
@@ -19,7 +15,7 @@ export async function MainProducts() {
             </h3>
 
             <div className='flex flex-col gap-4 mx-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:grid-rows-3 grid-rows-[200px_minmax(900px,_1fr)_100px]'>
-                {products?.map((product: Product) => {
+                {productos?.map((product: Product) => {
                     const imageSrc = product.images[0].src;
                     return (
                         <article
