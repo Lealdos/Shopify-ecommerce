@@ -21,7 +21,7 @@ export const getCollections = async (): Promise<Collection[] > => {
     }
 
     const { smart_collections } = await response.json()
-    const cleanCollections = smart_collections.map((collection: Collection) => {
+    const cleanCollections: Collection[] = smart_collections.map((collection: Collection):Collection => {
       return {
         id: collection.id,
         title: collection.title,
@@ -37,13 +37,13 @@ export const getCollections = async (): Promise<Collection[] > => {
 }
 
 
-export const getCollectionProducts = async (id: string) => {
+export const getCollectionProducts = async (id: string):Promise<ProductType[]> => {
   try {
     const response = await fetch (shopifyUrls.collections.ColectionProducts(id), {
       headers: new Headers({
         'X-Shopify-Access-Token': env.SHOPIFY_TOKEN})
     })
-    const {products}  = await response.json()
+    const {products}: {products: ProductType[]}  = await response.json()
     return products
   } catch (error) {
     console.log(error)
