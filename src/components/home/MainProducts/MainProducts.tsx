@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Product } from 'app/models/interface/products';
 
-import { getProducts } from 'app/services/shopify';
+import { getProducts } from '@/services/shopify/products';
 
 export async function MainProducts() {
     const products = await getProducts();
@@ -22,7 +22,7 @@ export async function MainProducts() {
                             key={product.id}
                             className='relative z-10 min-h-[300px]   cursor-pointer'
                         >
-                            <p className=' relative p-2 z-30 max-w-[200px] text-left text-2xl'>
+                            <p className=' relative p-2 z-30 max-w-[200px] text-left text-2xl '>
                                 {product.title}
                             </p>
                             <Image
