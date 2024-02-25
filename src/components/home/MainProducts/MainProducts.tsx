@@ -1,12 +1,10 @@
 import Image from 'next/image';
 import { Product } from 'app/models/interface/products';
-
-import { getProducts } from '@/services/shopify/products';
+import Link from 'next/link';
 
 export async function MainProducts() {
-    const products = await getProducts();
-    const prueba = await fetch('http://localhost:3000/api');
-    const productos = await prueba.json();
+    const productData = await fetch('http://localhost:3000/api');
+    const products = await productData.json();
 
     return (
         <section className='w-full h-full m-2'>
@@ -15,10 +13,11 @@ export async function MainProducts() {
             </h3>
 
             <div className='flex flex-col gap-4 mx-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:grid-rows-3 grid-rows-[200px_minmax(900px,_1fr)_100px]'>
-                {productos?.map((product: Product) => {
+                {products?.map((product: Product) => {
                     const imageSrc = product.images[0].src;
                     return (
-                        <article
+                        <Link
+                            href={`/products/${product.handle}?id=${product.id}`}
                             key={product.id}
                             className='relative z-10 min-h-[300px]   cursor-pointer'
                         >
@@ -32,7 +31,7 @@ export async function MainProducts() {
                                 alt={product.title}
                                 loading='eager'
                             />
-                        </article>
+                        </Link>
                     );
                 })}
             </div>

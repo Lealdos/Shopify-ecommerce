@@ -3,8 +3,6 @@ import { GeistSans } from 'geist/font/sans';
 import './globals.css';
 import { Header } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
-import { Hero } from '@/components/home/Hero';
-import { Description } from '@/components/home/Description';
 
 export const metadata: Metadata = {
     title: 'Ecommerce',
