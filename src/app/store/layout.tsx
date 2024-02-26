@@ -7,6 +7,15 @@ interface CollectionsProps {
     handle: string;
 }
 
+import { Metadata } from 'next';
+
+export const metadata:Metadata = {
+    title: 'Future Store',
+    description: 'ecommercer with all product that you need',
+    keywords: 'Product Page',
+
+} 
+
 export default async function Layout({
     children,
 }: {

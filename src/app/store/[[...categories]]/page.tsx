@@ -1,4 +1,5 @@
 import { ProductsWrapper } from 'app/components/Store/ProductsWrapper';
+import { Metadata } from 'next';
 import {
     getCollectionProducts,
     getCollections,
@@ -11,6 +12,15 @@ interface CategoryProps {
     };
     searchParams?: string;
 }
+
+
+
+export const metadata:Metadata = {
+    
+    description: 'Product Page',
+    keywords: 'Product Page',
+
+} 
 
 export default async function Category(props: Readonly<CategoryProps>) {
     const { categories } = props.params;

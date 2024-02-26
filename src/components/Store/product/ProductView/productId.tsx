@@ -10,14 +10,16 @@ export function ProductId({ product }: ProductViewProps) {
     if (!product) {
         redirect('/store');
     }
+
+    // remove html <P>  tags from description
     const removeHtmlTags = (htmlText: string) => {
         return htmlText.replace(/<\/?[^>]+(>|$)/g, '');
     };
     return (
-        <div className=' flex flex-row  items-center w-full justify-around'>
-            <section className='justify-center items-center '>
+        <div className=' flex flex-col md:flex-row  items-center w-full justify-around'>
+            <section className='justify-center items-center w-[350px] h-[350px] m-2 '>
                 <Image
-                    className='rounded-md m-4'
+                    className='rounded-md md:m-4'
                     loading='eager'
                     src={product?.image}
                     width={500}
