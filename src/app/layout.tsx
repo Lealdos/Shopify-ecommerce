@@ -18,9 +18,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang='en'>
+        <html lang='en' className='h-full w-full'>
             <body
-                className={`${GeistSans.className} flex flex-col text-center w-full h-full`}
+                className={`${GeistSans.className} flex flex-col text-center w-full h-full `}
             >
                 <Header />
                 {children}
