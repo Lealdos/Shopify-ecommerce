@@ -24,6 +24,7 @@ export default async function Category(props: Readonly<CategoryProps>) {
         )?.id;
         if (selectedCollectionId) {
             products = await getCollectionProducts(selectedCollectionId);
+            console.log(products);
         }
     } else {
         products = await getProducts();

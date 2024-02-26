@@ -18,9 +18,11 @@ export function ProductCard({ product }: ProductCardInterface) {
                 />
                 <div className='flex flex-row justify-between gap-4 items-center p-2 max-w-[350px] text-left text-lg  '>
                     <h3>{product.title}</h3>
-                    <span className='text-green-400 text-nowrap'>
-                        ${product.variants[0].price} USD
-                    </span>
+                    {!!product.price && (
+                        <span className='text-green-400 text-nowrap'>
+                            ${product.price} USD
+                        </span>
+                    )}
                 </div>
             </article>
         </Link>

@@ -48,7 +48,7 @@ export const getCollectionProducts = async (
                 }),
             }
         );
-        const { products }: { products: ProductType[] } = await response.json();
+        const { products } = await response.json();
         return products;
     } catch (error) {
         console.log(error);
