@@ -11,7 +11,9 @@ export const metadata: Metadata = {
 
 export default function NewAccountPage() {
   return(
-  
+  <main className="flex flex-col gap-4 items-center justify-center">
+
     <NewUserForm />
+  </main>
   );
 }

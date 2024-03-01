@@ -10,10 +10,11 @@ export const NewUserForm = () => {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
     // handleCreateUser(formData)
+    setLoading(true);
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-4 items-center justify-center h-screen">
       <h1 className="">New Account</h1>
       {/* <form className='bg-black flex flex-col gap-4 sm:flex sm:flex-row md:gap-8 '  onSubmit={handleSubmit}>
         <input className='' type="text" name="first_name" placeholder="Name" disabled={loading} />
@@ -213,6 +214,6 @@ export const NewUserForm = () => {
           })}
         </div>
       )}
-    </>
+    </div>
   );
 };

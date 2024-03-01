@@ -40,9 +40,9 @@ export default async function ProductPage(props: ProductPageProps) {
     const product = foundProduct[0]
 
     return (
-        <main className='flex flex-col gap-4 items-center justify-evenly '>
+        <main className='flex flex-col gap-4 items-center justify-evenly h-screen'>
             <ProductId product={product} />
-            <section className='w-full h-full m-2'>{product?.tags}</section>
+            <section className=' m-2'>{product?.tags}</section>
         </main>
     );
 }
