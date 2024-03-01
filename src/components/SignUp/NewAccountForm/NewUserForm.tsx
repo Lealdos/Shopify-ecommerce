@@ -27,27 +27,30 @@ export const NewUserForm = () => {
         <button>leo</button>
       </form> */}
       <div className="min-w-80 md:w-96 md:max-w-full mx-auto rounded-lg ">
-        <div className="p-6 border border-gray-600 sm:rounded-md bg-gradient-to-tr from-blue-900 via-indigo-800 to-emerald-800 rounded shadow-sm shadow-sky-500">
-          <form onSubmit={handleSubmit}>
+        <div className="p-6 border border-gray-600 sm:rounded-md bg-gradient-to-tr
+         from-blue-900 via-indigo-800 to-emerald-800 rounded shadow-sm shadow-sky-500
+            ">
+          <form onSubmit={handleSubmit} >
             <label className="block mb-6">
               <span className="text-gray-300">First name</span>
               <input
                 className="           
-                 block
-            w-full
-            mt-1
-            border-gray-600
-            rounded-sm
-            shadow-sm
-            focus:border-indigo-300
-            focus:ring
-            focus:ring-indigo-200
-            focus:ring-opacity-50
-            bg-transparent
-            placeholder-gray-800
-            text-gray-300"
+                            block
+                            w-full
+                            mt-1
+                            border-gray-600
+                            rounded-sm
+                            shadow-sm
+                            focus:border-indigo-300
+                            focus:ring
+                            focus:ring-indigo-200
+                            focus:ring-opacity-50
+                            bg-transparent
+                            placeholder-gray-800
+                            text-gray-300
+            "
                 type="text"
-                name="first_name"
+                name="firstName"
                 placeholder="Name"
                 disabled={loading}
               />
@@ -70,7 +73,7 @@ export const NewUserForm = () => {
                             placeholder-gray-800
                             text-gray-300"
                 type="text"
-                name="last_name"
+                name="lastName"
                 placeholder="Lastname"
                 disabled={loading}
               />
@@ -83,19 +86,19 @@ export const NewUserForm = () => {
                 name="email"
                 type="email"
                 className="
-            block
-            w-full
-            mt-1
-            border-gray-600
-            rounded-sm
-            shadow-sm
-            focus:border-indigo-300
-            focus:ring
-            focus:ring-indigo-200
-            focus:ring-opacity-50
-            bg-transparent
-            placeholder-gray-800
-            text-gray-300
+                              block
+                              w-full
+                              mt-1
+                              border-gray-600
+                              rounded-sm
+                              shadow-sm
+                              focus:border-indigo-300
+                              focus:ring
+                              focus:ring-indigo-200
+                              focus:ring-opacity-50
+                              bg-transparent
+                              placeholder-gray-800
+                              text-gray-300
           "
                 placeholder="joe.bloggs@example.com"
                 required
@@ -104,19 +107,21 @@ export const NewUserForm = () => {
             <label className="block mb-6">
               <span className="text-gray-300">Cellphone number</span>
               <input
-                className="            block
-            w-full
-            mt-1
-            border-gray-600
-            rounded-sm
-            shadow-sm
-            focus:border-indigo-300
-            focus:ring
-            focus:ring-indigo-200
-            focus:ring-opacity-50
-            bg-transparent
-            placeholder-gray-800
-            text-gray-300"
+                className="
+                            block
+                            w-full
+                            mt-1
+                            border-gray-600
+                            rounded-sm
+                            shadow-sm
+                            focus:border-indigo-300
+                            focus:ring
+                            focus:ring-indigo-200
+                            focus:ring-opacity-50
+                            bg-transparent
+                            placeholder-gray-800
+                            text-gray-300
+                "
                 type="text"
                 name="phone"
                 placeholder="phone number"
@@ -131,20 +136,20 @@ export const NewUserForm = () => {
                 name="password"
                 type="password"
                 className="
-            block
-            w-full
-            mt-1
-            border-gray-600
-            rounded-md
-            shadow-sm
-            focus:border-indigo-300
-            focus:ring
-            focus:ring-indigo-200
-            focus:ring-opacity-50
-            bg-transparent
-            placeholder-gray-600
-            text-gray-300
-          "
+                            block
+                            w-full
+                            mt-1
+                            border-gray-600
+                            rounded-md
+                            shadow-sm
+                            focus:border-indigo-300
+                            focus:ring
+                            focus:ring-indigo-200
+                            focus:ring-opacity-50
+                            bg-transparent
+                            placeholder-gray-600
+                            text-gray-300
+                          "
                 minLength={6}
                 placeholder="(must be 6+ chars)"
                 required
@@ -155,22 +160,22 @@ export const NewUserForm = () => {
                 <label className="block mb-6">
                   <span className="text-gray-300">Re-enter Password</span>
                   <input
-                    name="password_confirmation"
+                    name="passwordConfirmation"
                     type="password"
                     className="
-            block
-            w-full
-            mt-1
-            border-gray-600
-            rounded-md
-            shadow-sm
-            focus:border-indigo-300
-            focus:ring
-            focus:ring-indigo-200
-            focus:ring-opacity-50
-            bg-transparent
-            placeholder-gray-600
-            text-gray-300
+                                  block
+                                  w-full
+                                  mt-1
+                                  border-gray-600
+                                  rounded-md
+                                  shadow-sm
+                                  focus:border-indigo-300
+                                  focus:ring
+                                  focus:ring-indigo-200
+                                  focus:ring-opacity-50
+                                  bg-transparent
+                                  placeholder-gray-600
+                                  text-gray-300
           "
                     minLength={6}
                     placeholder="(must be 6+ chars)"
@@ -179,26 +184,29 @@ export const NewUserForm = () => {
                 </label>
               </div>
             </div>
-            <input className='' type="submit" name="submit" value="Create account" disabled={loading} />
-            <div className="mb-6">
+            <div className="mx-auto
+            flex flex-col justify-center items-center w-6/12">
+              <label > Create account</label>
               <button
                 type="submit"
+                disabled={loading}
+                name="submit"
                 className="
-            h-10
-            px-5
-            text-indigo-100
-            bg-indigo-700
-            rounded-lg
-            transition-colors
-            duration-150
-            focus:shadow-outline
-            hover:bg-indigo-800
-          "
+                              h-10
+                              px-5
+                              text-indigo-100
+                              bg-indigo-700
+                              rounded-lg
+                              transition-colors
+                              duration-150
+                              focus:shadow-outline
+                              hover:bg-indigo-800
+                            "
               >
                 Sign Up
               </button>
             </div>
-            
+
           </form>
         </div>
       </div>
