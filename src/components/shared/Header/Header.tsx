@@ -1,6 +1,13 @@
 import Link from 'next/link'
 
-export const Header = () => {
+import { cookies } from 'next/headers'
+
+
+export function Header() {
+
+  const cookiestore = cookies()
+  const token = cookiestore.get('accesstoken')?.value
+
   return (
     <header className='border-green-800 border-2 rounded-md m-2' >
       <nav className=' p-2'>
@@ -15,11 +22,22 @@ export const Header = () => {
               Store
             </Link>
           </li>
-          <li>
-            <Link href="/SignUp">
-              Login
-            </Link>
-          </li>
+          {!token &&
+            <li>
+              <Link href="/SignUp">
+                SignUp
+              </Link>
+            </li>
+
+
+          } {!token &&
+            <li>
+              <Link href="/Login">
+                Login
+              </Link>
+            </li>}
+
+
         </ul>
       </nav>
     </header>)

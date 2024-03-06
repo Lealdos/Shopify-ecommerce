@@ -19,15 +19,15 @@ export const NewUserForm = () => {
     };
 
     return (
-        <div className='flex flex-col gap-4 items-center justify-center h-screen'>
+        <div className='flex flex-col gap-4 items-center justify-center h-screen '>
             <h1 className=''>New Account</h1>
-            <div className='min-w-80 md:w-96 md:max-w-full mx-auto rounded-lg '>
+            <div className='min-w-80  md:max-w-full mx-auto rounded-lg '>
                 <div
                     className='p-6 border border-gray-600 sm:rounded-md bg-gradient-to-tr
          from-blue-900 via-indigo-800 to-emerald-800 rounded shadow-sm shadow-sky-500
             '
                 >
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className='w-11/12 sm:w-[400px]'  >
                         <label className='block mb-6'>
                             <span className='text-gray-300'>First name</span>
                             <input

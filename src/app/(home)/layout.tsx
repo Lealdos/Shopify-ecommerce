@@ -1,5 +1,5 @@
 import { Hero } from 'app/components/home/Hero';
-import { Description } from 'app/components/home/Description';
+
 
 export default function HomeLayout({
     children,
@@ -9,8 +9,6 @@ export default function HomeLayout({
     return (
         <>
             <Hero />
-            <Description />
-
             {children}
         </>
     );

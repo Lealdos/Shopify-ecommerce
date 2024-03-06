@@ -17,7 +17,11 @@ type GraphQLResponse = {
 export const handleCreateUser = async (formData: FormData) => {
     const graphQLClient = GraphQLClientSingleton.getInstance().getClient();
     const formDataObj = Object.fromEntries(formData);
+    /*
+
+    
     console.log(Object.fromEntries(formData.entries()));
+    */
 
     const variables = {
         input: {
@@ -42,3 +46,12 @@ export const handleCreateUser = async (formData: FormData) => {
     console.log('customer: ', customer);
     console.log('errors: ', customerUserErrors);
 };
+
+
+export const handleLogin = async (formData: FormData) => {
+    const formDataObject = Object.fromEntries(formData)
+    const accesToken = await createAccessToken(formDataObject.email as string, formDataObject.password as string)
+    if(accesToken){
+      redirect('/store')
+    }
+  }
