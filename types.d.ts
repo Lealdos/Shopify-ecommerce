@@ -4,7 +4,7 @@ interface ErrorPageProps {
 }
 
 interface ProductType {
-    id: number;
+    id: string;
     title: string;
     description: string;
     price: number;
@@ -18,6 +18,7 @@ interface ProductType {
     created_at?: string;
     updated_at?: string;
     variants: Variant[];
+    gql_id?: string;
 }
 
 interface Variant {
@@ -62,3 +63,14 @@ interface image {
     src: string;
     variant_ids: any[];
 }
+
+type CartItem = {
+    title: string;
+    price: number;
+    quantity: number;
+    id: string;
+    image: string;
+    total?: number;
+    handle: string;
+    merchandiseId?: string;
+};

@@ -28,15 +28,20 @@ export function ProductId({ product }: ProductViewProps) {
                     alt={product?.title}
                 />
             </section>
-            <section className='flex flex-col justify-between  text-balance '>
-                <p className='text-balance '>
+            <section className='text-center m-4 flex flex-col justify-center item-center '>
+                <h1 className='text-3xl underline mb-4'>{product?.title}</h1>
+                <p className='text-balance  md:max-w-[650px] '>
                     {removeHtmlTags(product?.description)}
                 </p>
-                <h1 className=''>{product?.title}</h1>
-                <span className=''>$ {product?.price}</span>
-                <div>
-                    <span>Max Quantity {product?.quantity}</span>
-                    <ProductViewItemsOrder maxQuantity={product?.quantity} />
+                <span className='text-green-400 text-xl my-2'>
+                    $ {product?.price} Unit
+                </span>
+                <div className='flex flex-col gap-1 justify-center items-center '>
+                    <span>Max Quantity available: {product?.quantity}</span>
+                    <ProductViewItemsOrder
+                        maxQuantity={product?.quantity}
+                        product={product}
+                    />
                 </div>
             </section>
         </div>

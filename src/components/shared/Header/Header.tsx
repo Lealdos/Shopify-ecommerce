@@ -2,7 +2,11 @@ import Link from 'next/link';
 
 import { cookies } from 'next/headers';
 import { validateAccessToken } from '@/utils/auth/ValidateAccessToken';
-import { ShoppingCart } from '../ShoppingCart';
+import dynamic from 'next/dynamic';
+
+const ShoppingCart = dynamic(() => import('@/components/shared/ShoppingCart'), {
+    ssr: false,
+});
 
 interface Costumer {
     firstName: string;

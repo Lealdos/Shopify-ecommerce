@@ -1,19 +1,19 @@
 'use client';
+import { useShoppingCart } from '@/hooks/useShoppingCartCounter';
 import { SyntheticEvent, useState } from 'react';
-import { FaCartShopping } from 'react-icons/fa6';
+import { FaOpencart } from 'react-icons/fa6';
 
 interface ProductViewItemsOrderProps {
     maxQuantity: number;
+    product: ProductType;
 }
 
-export const ProductViewItemsOrder = ({
+export function ProductViewItemsOrder({
     maxQuantity,
-}: ProductViewItemsOrderProps) => {
+    product,
+}: ProductViewItemsOrderProps) {
+    const { addToCart } = useShoppingCart();
     const [counter, setCounter] = useState(1);
-
-    const handleSubmit = (event: SyntheticEvent) => {
-        event.preventDefault();
-    };
 
     const handleSubtract = (event: SyntheticEvent) => {
         event.preventDefault();
@@ -27,22 +27,39 @@ export const ProductViewItemsOrder = ({
         setCounter(counter + 1);
     };
 
+    const handleSubmit = (event: SyntheticEvent) => {
+        event.preventDefault();
+        addToCart({
+            title: product.title,
+            price: product.price,
+            quantity: counter,
+            id: product.id,
+            image: product.image,
+            handle: product.handle,
+            merchandiseId: product.gql_id,
+        });
+    };
+
     return (
         <div className='flex flex-row gap-4 justify-center items-center  p-2 rounded-md text-lg  '>
             <div className=' p-2 rounded-md flex flex-row  justify-center items-center  gap-6 bg-gradient-to-r from-violet-600 to-cyan-600 min-w-32 '>
-                <button onClick={handleSubtract}>-</button>
+                <button className='hover:scale-125' onClick={handleSubtract}>
+                    -
+                </button>
                 <p className='min-w-5'>{counter}</p>
-                <button onClick={handleAdd}>+</button>
+                <button className='hover:scale-125' onClick={handleAdd}>
+                    +
+                </button>
             </div>
-            <form onSubmit={handleSubmit} className=''>
+            <form onSubmit={handleSubmit}>
                 <button
-                    className='p-2 flex flex-row gap-4 justify-center items-center rounded-md bg-gradient-to-r from-blue-600 to-violet-600  '
+                    className='p-2 flex flex-row gap-4 justify-center items-center rounded-md bg-gradient-to-r from-blue-600 to-violet-600  hover:scale-105 '
                     type='submit'
                 >
-                    <FaCartShopping />
+                    <FaOpencart className='text-2xl' />
                     <span>Add to cart</span>
                 </button>
             </form>
         </div>
     );
-};
+}

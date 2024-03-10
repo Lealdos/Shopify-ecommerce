@@ -8,7 +8,7 @@ interface ProductCardInterface {
 export function ProductCard({ product }: ProductCardInterface) {
     return (
         <Link href={`/products/${product.handle}?id=${product.id}`}>
-            <article className='min-h-[300px] cursor-pointer mx-6 '>
+            <article className='min-h-[300px] cursor-pointer mx-6 hover:scale-105'>
                 <Image
                     className='object-cover opacity-75 rounded-md w-[350px] h-[350px]  '
                     src={product.image}
