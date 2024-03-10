@@ -1,5 +1,5 @@
 'use client';
-import { useShoppingCart } from '@/hooks/useShoppingCartCounter';
+import useShoppingCart from '@/hooks/useShoppingCartCounter';
 import { SyntheticEvent, useState } from 'react';
 import { FaOpencart } from 'react-icons/fa6';
 

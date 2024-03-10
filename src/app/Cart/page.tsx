@@ -1,24 +1,41 @@
 'use client';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import useShoppingCart from '@/hooks/useShoppingCartCounter';
-import { useEffect, useState } from 'react';
 import { Loader } from '@/components/shared/Loader';
+import { handleCreateCart } from '@/actions';
 
+//check hydration error
 export default function CartPage() {
     const { cart, removeCartItem } = useShoppingCart();
     const [cartServer, setCartServer] = useState<CartItem[]>([]);
+    const [isBuy, setIsBuy] = useState(false);
+
+    const handleBuy = async () => {
+        setIsBuy(true);
+        try {
+            const checkoutUrl = await handleCreateCart(cart);
+            if (!checkoutUrl) throw new Error('Error creating checkout');
+            window.localStorage.removeItem('cart');
+            window.location.href = checkoutUrl;
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsBuy(false);
+        }
+    };
 
     useEffect(() => {
         setCartServer(cart);
-    }, [cart, removeCartItem]);
+    }, [cart]);
 
-    if (!cartServer) {
+    if (cartServer.length === 0 && !cartServer) {
         return (
-            <div className='h-screen flex flex-col justify-center items-center'>
-                <Loader />;
-            </div>
+            <main className='h-screen flex flex-col justify-center items-center'>
+                <Loader />
+            </main>
         );
     } else {
         return (
@@ -38,7 +55,6 @@ export default function CartPage() {
                 ) : (
                     cartServer?.map((product) => (
                         <div
-                            suppressHydrationWarning={true}
                             key={product.id}
                             className='relative self-baseline w-[380px]'
                         >
@@ -70,6 +86,14 @@ export default function CartPage() {
                         </div>
                     ))
                 )}
+                <button
+                    className='bg-gradient-to-r from-violet-500 to-blue-600 
+                 text-white font-bold py-2 px-4 rounded hover:shadow-md hover:scale-105 '
+                    onClick={handleBuy}
+                    disabled={isBuy}
+                >
+                    Buy
+                </button>
             </main>
         );
     }

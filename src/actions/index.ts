@@ -1,8 +1,11 @@
 'use server';
 
 import { GraphQLClientSingleton } from '@/graphql';
+import { createCartMutation } from '@/graphql/mutations/createCartMutation';
 import { createUserMutation } from '@/graphql/mutations/createUserMutation';
+import { validateAccessToken } from '@/utils/auth/ValidateAccessToken';
 import { createAccessToken } from '@/utils/auth/createAccessToken';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 //falta encriptar contraseña y manejo de errores
@@ -56,4 +59,38 @@ export const handleLogin = async (formData: FormData) => {
     if (accessToken) {
         redirect('/store');
     }
+};
+
+export const handleCreateCart = async (items: CartItem[]) => {
+    const cookiesStore = cookies();
+    const accessToken = cookiesStore.get('accessToken')?.value as string;
+
+    if (!accessToken) redirect('/login');
+
+    const graphqlClient = GraphQLClientSingleton.getInstance().getClient();
+    const customer = await validateAccessToken();
+    const variables = {
+        input: {
+            buyerIdentity: {
+                customerAccessToken: accessToken,
+                email: customer?.email,
+            },
+            lines: items.map((item) => ({
+                merchandiseId: item.merchandiseId,
+                quantity: item.quantity,
+            })),
+        },
+    };
+
+    const {
+        cartCreate,
+    }: {
+        cartCreate?: {
+            cart?: {
+                checkoutUrl: string;
+            };
+        };
+    } = await graphqlClient.request(createCartMutation, variables);
+
+    return cartCreate?.cart?.checkoutUrl;
 };
