@@ -12,18 +12,17 @@ export const createAccessToken = async (email: string, password: string) => {
             password: password,
         }
     );
-
-    const { accessToken, expiresAt } =
-        customerAccessTokenCreate.customerAccessToken;
-
-    if (accessToken) {
-        cookiesStore.set('accessToken', accessToken, {
-            path: '/',
-            expires: new Date(expiresAt),
-            httpOnly: true,
-            sameSite: 'strict',
-        });
+    if (customerAccessTokenCreate) {
+        const { accessToken, expiresAt } =
+            customerAccessTokenCreate?.customerAccessToken;
+        if (accessToken) {
+            cookiesStore.set('accessToken', accessToken, {
+                path: '/',
+                expires: new Date(expiresAt),
+                httpOnly: true,
+                sameSite: 'strict',
+            });
+        }
+        return accessToken;
     }
-    return accessToken;
-
 };
