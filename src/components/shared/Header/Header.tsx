@@ -28,6 +28,9 @@ export async function Header() {
                         <li>
                             <Link href='/store'>Store</Link>
                         </li>
+                        <li>
+                            <Link href='/Chat'>Chat</Link>
+                        </li>
                     </div>
                     {!token && (
                         <li>
