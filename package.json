@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.2.1",
     "ai": "^3.0.8",
     "geist": "^1.2.2",
     "graphql-request": "^6.1.0",
