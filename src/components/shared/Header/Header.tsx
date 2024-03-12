@@ -45,7 +45,7 @@ export async function Header() {
                     <div className='flex flex-row gap-8'>
                         {costumer && (
                             <li>
-                                <Link href='/Profile'>
+                                <Link href='/MyProfile'>
                                     {costumer.firstName}
                                 </Link>
                             </li>
