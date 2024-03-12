@@ -18,7 +18,7 @@ export async function Header() {
     const costumer: Costumer = await validateAccessToken();
 
     return (
-        <header className='border-green-800 border-2 rounded-md m-2'>
+        <header className='border-green-800 border-2 rounded-md my-2 mx-4 '>
             <nav className='mx-4 px-4 py-2'>
                 <ul className='flex flex-row items-center justify-between gap-4 text-sky-300 '>
                     <div className='flex flex-row gap-7'>
@@ -36,7 +36,7 @@ export async function Header() {
                         <li>
                             <Link href='/SignUp'>SignUp</Link>
                         </li>
-                    )}{' '}
+                    )}
                     {!token && (
                         <li>
                             <Link href='/Login'>Login</Link>
