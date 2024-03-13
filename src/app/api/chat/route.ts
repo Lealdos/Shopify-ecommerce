@@ -7,6 +7,8 @@ const openai = new OpenAI({
 });
 
 // IMPORTANT! Set the runtime to edge
+
+//ayuda a la latencia y la velocidad de respuesta
 export const runtime = 'edge';
 
 export async function POST(req: Request) {
