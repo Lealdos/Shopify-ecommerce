@@ -74,3 +74,29 @@ type CartItem = {
     handle: string;
     merchandiseId?: string;
 };
+
+type Order = {
+    cancelReason: any;
+    canceledAt: any;
+    currencyCode: string;
+    customerLocale: string;
+    customerUrl: string;
+    edited: boolean;
+    email: string;
+    financialStatus: string;
+    fulfillmentStatus: string;
+    id: string;
+    name: string;
+    orderNumber: number;
+    phone: string;
+    processedAt: string;
+    statusUrl: string;
+    lineItems: {
+        edges: Array<{
+            node: {
+                currentQuantity: number;
+                title: 2;
+            };
+        }>;
+    };
+};
