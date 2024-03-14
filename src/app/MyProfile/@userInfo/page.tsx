@@ -1,5 +1,8 @@
 import { validateAccessToken } from 'app/utils/auth/ValidateAccessToken';
 
+export const dynamic = 'force-dynamic';
+
+
 export default async function MyAccountPage() {
     const { email, firstName } = await validateAccessToken();
     return (
