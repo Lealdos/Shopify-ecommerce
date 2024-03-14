@@ -9,7 +9,7 @@ interface ProductType {
     description: string;
     price: number;
     images: image[];
-    image: string;
+    image: image |string;
     quantity: number;
     handle: string;
     tags: string;

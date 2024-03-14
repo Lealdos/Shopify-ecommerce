@@ -1,14 +1,11 @@
 import { validateAccessToken } from 'app/utils/auth/ValidateAccessToken';
 
 export default async function MyAccountPage() {
-    const customer = await validateAccessToken();
-    console.log('customer: ', customer);
+    const { email, firstName } = await validateAccessToken();
     return (
-        <div>
-            <section>
-                <h1>Welcome back {customer.name}</h1>
-                <p>email: {customer.email}</p>
-            </section>
-        </div>
+        <section className=' bg-zinc-900/50 rounded-md  p-4'>
+            <h1>Welcome back {firstName}</h1>
+            <p>email: {email}</p>
+        </section>
     );
 }

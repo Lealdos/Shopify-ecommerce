@@ -7,6 +7,8 @@ import useShoppingCart from '@/hooks/useShoppingCartCounter';
 import { Loader } from '@/components/shared/Loader';
 import { handleCreateCart } from '@/actions';
 
+export const dynamic = 'force-dynamic';
+
 //check hydration error
 export default function CartPage() {
     const { cart, removeCartItem } = useShoppingCart();

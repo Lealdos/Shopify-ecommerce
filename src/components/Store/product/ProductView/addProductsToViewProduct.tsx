@@ -34,7 +34,7 @@ export function ProductViewItemsOrder({
             price: product.price,
             quantity: counter,
             id: product.id,
-            image: product.image,
+            image: typeof product.image === 'string' ? product.image : '',
             handle: product.handle,
             merchandiseId: product.gql_id,
         });
