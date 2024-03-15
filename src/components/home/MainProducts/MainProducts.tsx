@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { Product } from 'app/models/interface/products';
 import Link from 'next/link';
+import { getMainProducts } from '@/services/shopify/products';
 
 export async function MainProducts() {
-    const productData = await fetch('http://localhost:3000/api');
-    const products = await productData.json();
+    const products = await getMainProducts();
 
     return (
         <section className='w-full h-full m-2'>

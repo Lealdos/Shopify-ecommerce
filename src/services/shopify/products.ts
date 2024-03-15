@@ -32,3 +32,19 @@ export const getProducts = async (id?: string) => {
         throw new Error('An error occurred while fetching products');
     }
 };
+
+export const getMainProducts = async () => {
+    const response = await fetch(shopifyUrls.products.mainProducts, {
+        headers: new Headers({
+            'X-Shopify-Access-Token': env.SHOPIFY_TOKEN,
+        }),
+        cache: 'force-cache',
+        next: {
+            tags: ['main-products'],
+        },
+    });
+
+    const { products } = await response.json();
+
+    return products;
+};
