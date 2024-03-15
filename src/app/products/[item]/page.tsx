@@ -15,7 +15,7 @@ interface ProductPageProps {
 
 export async function generateMetadata(
     { searchParams }: ProductPageProps
-  ): Promise<Metadata> {
+  ): Promise<Metadata|any> {
     // read route params
     const foundProducts = await getProducts(searchParams.id.toString());
     const product = foundProducts[0]
@@ -32,6 +32,7 @@ export async function generateMetadata(
 
 export default async function ProductPage(props: ProductPageProps) {
     const searchParams = props.searchParams;
+    
 
     if (!searchParams.id) {
         redirect('/store');

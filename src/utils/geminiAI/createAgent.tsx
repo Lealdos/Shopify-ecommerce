@@ -1,4 +1,4 @@
-export function createAgent(productsNames: string) {
+export function createAgent(productsNames: string[]|string) {
     return `You are a salesman from an online store that has the following products:
 
     ${productsNames}

@@ -24,7 +24,7 @@ export const metadata:Metadata = {
 
 export default async function Category(props: Readonly<CategoryProps>) {
     const { categories } = props.params;
-    let products = [];
+    let products:any[] = [];
     const collections = await getCollections();
 
     if (categories?.length > 0) {

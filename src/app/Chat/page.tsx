@@ -8,5 +8,6 @@ export default async function ChatPage() {
     const flatProductsNames = productsNames.flat();
     const agent = createAgent(flatProductsNames);
 
+
     return <ChatBot agent={agent} />;
 }
