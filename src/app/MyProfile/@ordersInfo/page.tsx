@@ -1,20 +1,22 @@
 import { getProducts } from '@/services/shopify/products';
 import { getCustomerOrders } from 'app/services/shopify/graphql/costumerOrders';
+import Image from 'next/image';
+
 
 export default async function ordersInfo() {
     const products = await getProducts();
 
     const ordersInfo = await getCustomerOrders();
-    //  const azul = ordersInfo.orders.filter((CustomerOrders:any) => CustomerOrders.lineItems.edges[0].node.title )
+    //  const azul = ordersInfo.orders.filter((CustomerOrders:any) => CustomerOrders.lineItems.edges[0].node.title === products.title)
     // console.log('leo',azul)
     const prueba = products.filter(
         (product: ProductType) => product.title === 'azul'
     );
     const imagen: string[] = prueba.map((product: ProductType) => {
         if (typeof product.image === 'string') {
-            return product.image; // Si 'image' es una cadena, la devolvemos directamente
+            return product.image;
         } else {
-            return product.image.src; // Si 'image' es un objeto, accedemos a su propiedad 'src'
+            return product.image.src;
         }
     });
 
@@ -31,14 +33,28 @@ export default async function ordersInfo() {
                         className=' bg-red-700/60 rounded-lg p-2'
                     >
                         <h3>Order {order.name}</h3>
-                        {order.lineItems.edges.map(({ node: product }) => (
-                            <div key={product.title}>
-                                <span>{product.title} </span>
-                                <span className=''>
-                                    x {product.currentQuantity}
-                                </span>
-                            </div>
-                        ))}
+                        {order.lineItems.edges.map(({ node: product }) => {
+
+                              const indexImageProduct = products.findIndex(
+                                 ({title}) => title === product.title) 
+
+
+                            return (
+                                <div key={product.title} className='flex justify-center items-center gap-2 '>
+                                    { <Image
+                                        className='rounded-md text-balance'
+                                        src={products[indexImageProduct].image}
+                                        width={50}
+                                        height={50}
+                                        alt={product.title}
+                                    /> }
+                                    <span>{product.title} </span>
+                                    <span className=''>
+                                        x {product.currentQuantity}
+                                    </span>
+                                </div>
+                            )
+                        })}
                     </a>
                 ))}
             </section>

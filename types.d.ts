@@ -95,7 +95,7 @@ type Order = {
         edges: Array<{
             node: {
                 currentQuantity: number;
-                title: 2;
+                title: string;
             };
         }>;
     };

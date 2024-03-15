@@ -6,12 +6,12 @@ interface MyAccountLayoutProps {
 
 export default async function MyAccountLayout(props: MyAccountLayoutProps) {
     return (
-        <main className="flex justify-center items-start  h-screen">
-            <div className="">
+        <main className="flex justify-center items-start h-screen">
+            <div className="my-8 ">
 
                 {props.children}
 
-                <div className=' flex flex-col mx-4 gap-8  sm:flex-row  bg-gray-800/50 p-4 rounded-md'>
+                <div className=' mt-10 flex flex-col mx-4 gap-8  sm:flex-row  bg-gray-800/50 p-4 rounded-md'>
                     {props.userInfo}
                     {props.ordersInfo}
                 </div>

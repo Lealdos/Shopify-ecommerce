@@ -13,7 +13,7 @@ export const getProducts = async (id?: string) => {
         });
         const { products } = await response.json();
 
-        const transformedProducts = products.map((product: any) => {
+        const transformedProducts:ProductType[] = products.map((product: any) => {
             return {
                 id: product.id,
                 gql_id: product.variants[0].admin_graphql_api_id,

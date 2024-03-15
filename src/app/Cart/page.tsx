@@ -16,12 +16,15 @@ export default function CartPage() {
     const [isBuy, setIsBuy] = useState(false);
 
     const handleBuy = async () => {
+
         setIsBuy(true);
         try {
             const checkoutUrl = await handleCreateCart(cart);
             if (!checkoutUrl) throw new Error('Error creating checkout');
             window.localStorage.removeItem('cart');
             window.location.href = checkoutUrl;
+            window.open(checkoutUrl, '_blank');
+
         } catch (error) {
             console.log(error);
         } finally {
@@ -92,11 +95,11 @@ export default function CartPage() {
                     className='bg-gradient-to-r from-violet-500 to-blue-600 
                  text-white font-bold py-2 px-4 rounded hover:shadow-md hover:scale-105 '
                     onClick={handleBuy}
-                    disabled={isBuy}
+                    disabled={isBuy || cartServer.length === 0 }
                 >
                     Buy
                 </button>
             </main>
         );
-    }
-}
+    }}
+              
