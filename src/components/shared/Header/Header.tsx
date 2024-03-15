@@ -32,29 +32,35 @@ export async function Header() {
                             <Link href='/Chat'>Chat</Link>
                         </li>
                     </div>
-                    {!token && (
-                        <li>
-                            <Link href='/SignUp'>SignUp</Link>
-                        </li>
-                    )}
-                    {!token && (
-                        <li>
-                            <Link href='/Login'>Login</Link>
-                        </li>
-                    )}
-                    <div className='flex flex-row gap-8'>
-                        {costumer && (
-                            <li>
-                                <Link href='/MyProfile'>
-                                    {costumer.firstName}
+                    <div className='flex flex-row gap-7'>
+                        <div className='flex flex-row'>
+
+                            {!token && (
+                                <li>
+                                    <Link href='/SignUp'>SignUp/</Link>
+                                </li>
+                            )}
+                            {!token && (
+                                <li>
+                                    <Link href='/Login'>Login</Link>
+                                </li>
+                            )}
+                        </div>
+                        <div className='flex flex-row gap-8'>
+                            {costumer && (
+                                <li>
+                                    <Link href='/MyProfile'>
+                                        {costumer.firstName}
+                                    </Link>
+                                </li>
+                            )}
+                            {token && (<li>
+                                <Link href='/Cart'>
+                                    <ShoppingCart />
                                 </Link>
                             </li>
-                        )}
-                        <li>
-                            <Link href='/Cart'>
-                                <ShoppingCart />
-                            </Link>
-                        </li>
+                            )}
+                        </div>
                     </div>
                 </ul>
             </nav>

@@ -7,20 +7,12 @@ export default async function ordersInfo() {
     const products = await getProducts();
 
     const ordersInfo = await getCustomerOrders();
-    //  const azul = ordersInfo.orders.filter((CustomerOrders:any) => CustomerOrders.lineItems.edges[0].node.title === products.title)
-    // console.log('leo',azul)
+
     const prueba = products.filter(
         (product: ProductType) => product.title === 'azul'
     );
-    const imagen: string[] = prueba.map((product: ProductType) => {
-        if (typeof product.image === 'string') {
-            return product.image;
-        } else {
-            return product.image.src;
-        }
-    });
 
-    // console.log(ordersInfo)
+
 
     return (
         <div className='bg-zinc-900/50 p-4 rounded-md '>
@@ -42,14 +34,14 @@ export default async function ordersInfo() {
                             return (
                                 <div key={product.title} className='flex justify-center items-center gap-2 '>
                                     { <Image
-                                        className='rounded-md text-balance'
+                                        className='rounded-md '
                                         src={products[indexImageProduct].image}
                                         width={50}
                                         height={50}
                                         alt={product.title}
                                     /> }
-                                    <span>{product.title} </span>
-                                    <span className=''>
+                                    <span className='text-balance max-w-52'>{product.title} </span>
+                                    <span >
                                         x {product.currentQuantity}
                                     </span>
                                 </div>
