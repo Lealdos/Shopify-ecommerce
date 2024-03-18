@@ -2,16 +2,21 @@
 import { handleCreateUser } from '@/actions';
 import { useState } from 'react';
 
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+
 // falta la parte de la confirmacion de la contraseña
 export const NewUserForm = () => {
     const [errors, setErrors] = useState<string[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    const [phone, setPhone] = useState('');
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setLoading(true);
         const formData = new FormData(event.target as HTMLFormElement);
         formData.delete('passwordConfirmation');
+        console.log(Object.fromEntries(formData.entries()));
 
         await handleCreateUser(formData);
 
@@ -27,7 +32,10 @@ export const NewUserForm = () => {
          from-blue-900 via-indigo-800 to-emerald-800 rounded shadow-sm shadow-sky-500
             '
                 >
-                    <form onSubmit={handleSubmit} className='w-11/12 sm:w-[400px]'  >
+                    <form
+                        onSubmit={handleSubmit}
+                        className='w-11/12 sm:w-[400px]'
+                    >
                         <label className='block mb-6'>
                             <span className='text-gray-300'>First name</span>
                             <input
@@ -50,6 +58,7 @@ export const NewUserForm = () => {
                                 name='firstName'
                                 placeholder='Name'
                                 disabled={loading}
+                                required
                             />
                         </label>
                         <label className='block mb-6'>
@@ -73,6 +82,7 @@ export const NewUserForm = () => {
                                 name='lastName'
                                 placeholder='LastName'
                                 disabled={loading}
+                                required
                             />
                         </label>
                         <label className='block mb-6'>
@@ -105,29 +115,21 @@ export const NewUserForm = () => {
                             <span className='text-gray-300'>
                                 Cellphone number
                             </span>
-                            <input
-                                className='
-                            block
-                            w-full
-                            mt-1
-                            border-gray-600
-                            rounded-sm
-                            shadow-sm
-                            focus:border-indigo-300
-                            focus:ring
-                            focus:ring-indigo-200
-                            focus:ring-opacity-50
-                            bg-transparent
-                            placeholder-gray-800
-                            text-gray-300
-                '
-                                type='text'
-                                name='phone'
-                                placeholder='phone number'
-                                pattern='^[0-9]*$'
-                                disabled={loading}
+                            <PhoneInput
+                                country={'us'}
+                                value={phone}
+                                onChange={(phone) => setPhone(phone)}
+                                inputProps={{
+                                    name: 'phone',
+                                    required: true,
+                                }}
+                                containerStyle={{
+                                    color: 'black',
+                                }}
+                                autoFormat={false}
                             />
                         </label>
+
                         <label className='block mb-6'>
                             <span className='text-gray-300'>Password</span>
                             <input

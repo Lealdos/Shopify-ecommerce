@@ -29,7 +29,7 @@ export const handleCreateUser = async (formData: FormData) => {
     const variables = {
         input: {
             ...formDataObj,
-            phone: '+1' + formDataObj.phone,
+            phone: formDataObj.phone,
             acceptsMarketing: formData.get('acceptsMarketing') === 'off',
         },
     };
