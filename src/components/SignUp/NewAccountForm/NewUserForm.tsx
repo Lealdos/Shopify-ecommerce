@@ -16,7 +16,6 @@ export const NewUserForm = () => {
         setLoading(true);
         const formData = new FormData(event.target as HTMLFormElement);
         formData.delete('passwordConfirmation');
-        console.log(Object.fromEntries(formData.entries()));
 
         await handleCreateUser(formData);
 
