@@ -33,7 +33,7 @@ export async function Header() {
                         <div className='flex flex-row'>
                             {!token && (
                                 <li>
-                                    <Link href='/SignUp'>SignUp/</Link>
+                                    <Link href='/SignUp'>SignUp</Link>
                                 </li>
                             )}
                             {!token && (

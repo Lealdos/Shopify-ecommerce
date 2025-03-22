@@ -46,8 +46,6 @@ export const handleCreateUser = async (formData: FormData) => {
         );
         redirect('/store');
     }
-    console.log('customer: ', customer);
-    console.log('errors: ', customerUserErrors);
 };
 
 export const handleLogin = async (formData: FormData) => {

@@ -13,18 +13,14 @@ interface CategoryProps {
     searchParams?: string;
 }
 
-
-
-export const metadata:Metadata = {
-    
+export const metadata: Metadata = {
     description: 'Product Page',
     keywords: 'Product Page',
-
-} 
+};
 
 export default async function Category(props: Readonly<CategoryProps>) {
     const { categories } = props.params;
-    let products:any[] = [];
+    let products: any[] = [];
     const collections = await getCollections();
 
     if (categories?.length > 0) {
@@ -34,7 +30,6 @@ export default async function Category(props: Readonly<CategoryProps>) {
         )?.id;
         if (selectedCollectionId) {
             products = await getCollectionProducts(selectedCollectionId);
-            console.log(products);
         }
     } else {
         products = await getProducts();

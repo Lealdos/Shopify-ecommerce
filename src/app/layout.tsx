@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans';
 import './globals.css';
 import { Header } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
+import { ChatProvider } from '@/components/layout/ChatProvider';
 
 export const metadata: Metadata = {
     title: 'Home: Future',
@@ -19,11 +20,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en'>
-            <body
-                className={GeistSans.className}
-            >
+            <body className={GeistSans.className}>
                 <Header />
                 {children}
+                <ChatProvider />
                 <Footer />
             </body>
         </html>
