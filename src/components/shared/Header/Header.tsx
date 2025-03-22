@@ -28,13 +28,9 @@ export async function Header() {
                         <li>
                             <Link href='/store'>Store</Link>
                         </li>
-                        <li>
-                            <Link href='/Chat'>Chat</Link>
-                        </li>
                     </div>
                     <div className='flex flex-row gap-7'>
                         <div className='flex flex-row'>
-
                             {!token && (
                                 <li>
                                     <Link href='/SignUp'>SignUp/</Link>
@@ -54,12 +50,12 @@ export async function Header() {
                                     </Link>
                                 </li>
                             )}
-                            {token && (<li>
+
+                            <li>
                                 <Link href='/Cart'>
                                     <ShoppingCart />
                                 </Link>
                             </li>
-                            )}
                         </div>
                     </div>
                 </ul>
