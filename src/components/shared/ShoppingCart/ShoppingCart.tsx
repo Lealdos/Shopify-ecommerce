@@ -1,7 +1,6 @@
 'use client';
 import useShoppingCart from '@/hooks/useShoppingCartCounter';
-import { FaOpencart } from 'react-icons/fa';
-
+import { HiShoppingCart } from 'react-icons/hi2';
 export default function ShoppingCart() {
     const { cart } = useShoppingCart();
 
@@ -13,7 +12,7 @@ export default function ShoppingCart() {
             >
                 {cart.length}
             </span>
-            <FaOpencart className='fill-sky-400 text-2xl ' />
+            <HiShoppingCart className='fill-sky-400 text-2xl ' />
         </div>
     );
 }
