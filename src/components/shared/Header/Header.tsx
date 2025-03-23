@@ -1,9 +1,10 @@
+'use client';
+
 import Link from 'next/link';
-
-import { cookies } from 'next/headers';
-import { validateAccessToken } from '@/utils/auth/ValidateAccessToken';
 import dynamic from 'next/dynamic';
-
+import { FaUserAstronaut } from 'react-icons/fa';
+import { GoSignOut } from 'react-icons/go';
+import { useRouter } from 'next/navigation';
 const ShoppingCart = dynamic(() => import('@/components/shared/ShoppingCart'), {
     ssr: false,
 });
@@ -12,10 +13,31 @@ interface Costumer {
     firstName: string;
     email: string;
 }
-export async function Header() {
-    const cookieStore = cookies();
-    const token = cookieStore.get('accessToken')?.value;
-    const costumer: Costumer = await validateAccessToken();
+
+export interface HeaderProps {
+    token: string;
+    costumer: Costumer;
+}
+
+export function Header({ token, costumer }: HeaderProps) {
+    const router = useRouter();
+    const handleSignOut = async () => {
+        try {
+            const response = await fetch('/api/signOut', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                router.replace('/');
+                router.refresh();
+            }
+        } catch (error) {
+            console.error('Error signing out:', error);
+        }
+    };
 
     return (
         <header className='border-green-800 border-2 rounded-md my-2 mx-4 '>
@@ -29,34 +51,49 @@ export async function Header() {
                             <Link href='/store'>Store</Link>
                         </li>
                     </div>
-                    <div className='flex flex-row gap-7'>
-                        <div className='flex flex-row'>
-                            {!token && (
+                    <div className='flex gap-6 justify-center items-center '>
+                        {token ? (
+                            <>
                                 <li>
-                                    <Link href='/SignUp'>SignUp</Link>
-                                </li>
-                            )}
-                            {!token && (
-                                <li>
-                                    <Link href='/Login'>Login</Link>
-                                </li>
-                            )}
-                        </div>
-                        <div className='flex flex-row gap-8'>
-                            {costumer && (
-                                <li>
-                                    <Link href='/MyProfile'>
+                                    <Link
+                                        href='/MyProfile'
+                                        className=' flex gap-2 text-ellipsis items-center'
+                                    >
+                                        <FaUserAstronaut />
+
                                         {costumer.firstName}
                                     </Link>
                                 </li>
-                            )}
+                                <li>
+                                    <button
+                                        type='button'
+                                        className='flex gap-2 items-center'
+                                        onClick={() => handleSignOut()}
+                                    >
+                                        <GoSignOut
+                                            size={20}
+                                            className='inline'
+                                        />
+                                        Sign out
+                                    </button>
+                                </li>
+                            </>
+                        ) : (
+                            <>
+                                <li>
+                                    <Link href='/Login'>Login</Link>
+                                </li>
 
-                            <li>
-                                <Link href='/Cart'>
-                                    <ShoppingCart />
-                                </Link>
-                            </li>
-                        </div>
+                                <li>
+                                    <Link href='/SignUp'>Sign Up</Link>
+                                </li>
+                            </>
+                        )}
+                        <li>
+                            <Link href='/Cart'>
+                                <ShoppingCart />
+                            </Link>
+                        </li>
                     </div>
                 </ul>
             </nav>
