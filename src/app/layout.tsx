@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import './globals.css';
-import { Header } from '@/components/shared/Header';
+import { Header, HeaderProps } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
 import { ChatProvider } from '@/components/layout/ChatProvider';
+import { cookies } from 'next/headers';
+import { validateAccessToken } from '@/utils/auth/ValidateAccessToken';
 
 export const metadata: Metadata = {
     title: 'Home: Future',
@@ -13,15 +15,19 @@ export const metadata: Metadata = {
     },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const cookieStore = cookies();
+    const token = cookieStore.get('accessToken')?.value ?? '';
+    const costumer: HeaderProps['costumer'] = await validateAccessToken();
+
     return (
         <html lang='en'>
             <body className={GeistSans.className}>
-                <Header />
+                <Header token={token} costumer={costumer} />
                 {children}
                 <ChatProvider />
                 <Footer />
